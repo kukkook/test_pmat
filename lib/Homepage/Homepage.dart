@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_test_pmat/responsive.dart';
+import 'package:flutter_test_pmat/navbar.dart';
+import 'package:flutter_test_pmat/menu_drawer.dart';
+import 'package:flutter_test_pmat/footer.dart';
+
+import 'package:flutter_test_pmat/Homepage/banner.dart';
+import 'package:flutter_test_pmat/Homepage/services.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          toolbarHeight: Responsive.isDesktop(context) ? 80 : 60,
+          automaticallyImplyLeading: !Responsive.isDesktop(context),
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: Color.fromARGB(255, 200, 231, 251),
+          elevation: 0,
+          centerTitle: true,
+          title: !Responsive.isDesktop(context)
+              ? Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: SizedBox(
+                    height: 50,
+                    width: 100,
+                    child: Image.asset(
+                      'assets/banner/logo.png',
+                    ),
+                  ),
+                )
+              : Navbar()),
+      drawer: MenuDrawer(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            
+            BannerPage(), 
+            Services(),
+            Footer()
+            ],
+        ),
+      ),
+    );
+  }
+}
