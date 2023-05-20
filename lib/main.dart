@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:flutter_test_pmat/Homepage/Homepage.dart';
+import 'package:flutter_test_pmat/about/aboutpage.dart';
+import 'package:flutter_test_pmat/contact/contact.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,11 +11,25 @@ void main() {
 
 final GoRouter _router = GoRouter(routes: <RouteBase>[
   GoRoute(
-    path: '/',
-    builder: (BuildContext context, GoRouterState state) {
-      return HomePage();
-    })
-  ]);
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return HomePage();
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: 'about',
+          builder: (BuildContext context, GoRouterState state) {
+            return AboutPage();
+          },
+        ),
+        GoRoute(
+          path: 'contact',
+          builder: (BuildContext context, GoRouterState state) {
+            return ContactPage();
+          },
+        ),
+      ])
+]);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,4 +43,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
